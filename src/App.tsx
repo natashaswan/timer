@@ -11,12 +11,20 @@ const Timer = () => {
   
   useEffect(()=>{
     const interval = setInterval(()=>{setCounter(prev=> prev+1)}, 1000);
-    tooltipRef.current?.addEventListener('mouseover', onMouseOver);
-    tooltipRef.current?.addEventListener('mouseout', onMouseOut);
     return ()=>{
       clearInterval(interval)
     }
   }, []);
+
+  useEffect(()=>{
+    const ref = tooltipRef.current; //making sure it's a reference to the current div
+    ref?.addEventListener('mouseover', onMouseOver);
+    ref?.addEventListener('mouseout', onMouseOut);
+    return ()=>{
+      ref?.removeEventListener('mouseover', onMouseOver);
+      ref?.removeEventListener('mouseout', onMouseOut);
+    }
+  }, [onMouseOver, onMouseOut]);
 
   return(
     <div >
