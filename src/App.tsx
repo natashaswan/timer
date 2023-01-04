@@ -1,22 +1,34 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import './App.css';
 
-function App() {
-  const [counter, setCounter] = useState(0);
-  //let isMounted: boolean = true;
+const Timer = () => {
 
+  const [counter, setCounter] = useState(0);
+  
   useEffect(()=>{
-      const interval = setInterval(()=>{setCounter(prev=> prev+1)}, 1000);
+    const interval = setInterval(()=>{setCounter(prev=> prev+1)}, 1000);
     
     return ()=>{
       clearInterval(interval)
     }
   }, []);
 
+  return(
+    <div >
+    <h1>Timer</h1>
+    <div>{counter}</div>
+  </div>
+  )
+}
+
+function App() {
+  const [index, setIndex] = useState(0);
+
+  const updateIndex = useCallback(()=>{setIndex(index+1)}, [index])
   return (
-    <div className="App">
-      <h1>Timer</h1>
-      <div>{counter}</div>
+    <div className="App" key={index}>
+     <Timer/>
+    <button onClick={updateIndex}>Clear timer</button>
     </div>
   );
 }
