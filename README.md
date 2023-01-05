@@ -1,3 +1,14 @@
+
+# Timer with a reset button and tooltip.
+
+> Individual Project. 
+
+### Status: generally completed and functioning, but maybe enhanced in the future.
+
+---
+## Description 
+React.js app. The page shows a timer that starts on page load, no styling. There is a button that resets the timer and a tooltip that appears on hover over and shows the timer counter +1.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
